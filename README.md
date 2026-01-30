@@ -1,4 +1,4 @@
-# !Matrix Calculator Web Application
+# !Matrix Calculator Web Applicationss
 
 ![Matrix Calculator Screenshot](demo-screenshot.png)
 

@@ -1,4 +1,4 @@
-# !Matrix Calculator Web Applications Ez Piz
+# !Matrix Calculator Web Applications Ez
 
 ![Matrix Calculator Screenshot](demo-screenshot.png)
 

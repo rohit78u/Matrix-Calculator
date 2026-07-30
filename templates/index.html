@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A visual matrix calculator for common linear algebra operations.">
+  <title>Matrix Lab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <main class="app-shell">
+    <header class="glass-header">
+      <div class="logo"><span aria-hidden="true">▦</span><h1>Matrix Lab</h1></div>
+      <div class="header-right"><span class="status-indicator online"></span><span class="status-text">Ready</span><button id="reset-view-btn" class="glass-btn small" type="button">Reset view</button></div>
+    </header>
+    <section class="main-content" aria-label="Matrix calculator">
+      <section class="panel glass-panel input-panel" aria-labelledby="input-heading">
+        <div class="panel-header"><h2 id="input-heading">Matrix input</h2><div class="panel-tabs"><button class="tab-btn active" data-tab="manual" type="button">Manual</button><button class="tab-btn" data-tab="preset" type="button">Presets</button></div></div>
+        <div class="tab-content active" id="tab-manual">
+          <div class="matrix-tabs" role="tablist"><button class="matrix-tab active" data-matrix="A" type="button">Matrix A</button><button class="matrix-tab" data-matrix="B" type="button">Matrix B</button></div>
+          <div class="size-controls">
+            <div class="size-group"><label>Rows</label><div class="size-stepper"><button class="step-btn" data-dim="rows" data-dir="down" type="button" aria-label="Decrease rows">−</button><span id="rows-value" class="size-value">2</span><button class="step-btn" data-dim="rows" data-dir="up" type="button" aria-label="Increase rows">+</button></div></div>
+            <div class="size-group"><label>Columns</label><div class="size-stepper"><button class="step-btn" data-dim="cols" data-dir="down" type="button" aria-label="Decrease columns">−</button><span id="cols-value" class="size-value">2</span><button class="step-btn" data-dim="cols" data-dir="up" type="button" aria-label="Increase columns">+</button></div></div>
+          </div>
+          <div id="matrix-grid" class="matrix-grid" aria-live="polite"></div>
+        </div>
+        <div class="tab-content" id="tab-preset"><div class="preset-grid"><button class="preset-btn" data-preset="identity2" type="button">Identity 2×2</button><button class="preset-btn" data-preset="identity3" type="button">Identity 3×3</button><button class="preset-btn" data-preset="random2" type="button">Random 2×2</button><button class="preset-btn" data-preset="random3" type="button">Random 3×3</button><button class="preset-btn" data-preset="fibonacci" type="button">Fibonacci 3×3</button><button class="preset-btn" data-preset="hilbert" type="button">Hilbert 3×3</button></div></div>
+        <div class="operation-section"><label for="operation-select">Operation</label><select id="operation-select" class="glass-select"><option value="add">A + B — Addition</option><option value="subtract">A − B — Subtraction</option><option value="multiply">A × B — Multiplication</option><option value="transpose_a">Transpose A</option><option value="determinant_a">Determinant A</option><option value="inverse_a">Inverse A</option><option value="eigenvalues_a">Eigenvalues A</option><option value="svd_a">SVD A</option><option value="transpose_b">Transpose B</option><option value="determinant_b">Determinant B</option><option value="inverse_b">Inverse B</option><option value="eigenvalues_b">Eigenvalues B</option><option value="svd_b">SVD B</option></select></div>
+        <button id="calculate-btn" class="primary-btn" type="button">Calculate</button>
+      </section>
+      <section class="panel glass-panel results-panel" aria-labelledby="results-heading">
+        <div class="panel-header"><h2 id="results-heading">Results</h2><span id="operation-badge" class="badge">Ready</span></div>
+        <div id="result-container" class="result-container" aria-live="polite"><div class="result-placeholder"><p>Enter values, choose an operation, then calculate.</p></div></div>
+        <div id="error-container" class="error-container" role="alert" hidden><span id="error-message"></span></div>
+        <div class="result-meta" id="result-meta" hidden><div class="meta-item"><span class="meta-label">Operation</span><span id="meta-operation" class="meta-value">—</span></div><div class="meta-item"><span class="meta-label">Matrix A</span><span id="meta-shape-a" class="meta-value">—</span></div><div class="meta-item"><span class="meta-label">Matrix B</span><span id="meta-shape-b" class="meta-value">—</span></div><div class="meta-item"><span class="meta-label">Result</span><span id="meta-shape-result" class="meta-value">—</span></div></div>
+      </section>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</body>
+</html>

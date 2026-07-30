@@ -1,8 +1,6 @@
-# !Matrix Calculator Web Applications Ez
+# Matrix Lab
 
-![Matrix Calculator Screenshot](demo-screenshot.png)
-
-A Flask-based web application for performing various matrix operations with an intuitive interface.
+A small, production-ready Flask web application for common matrix and linear algebra calculations.
 
 ## Features
 
@@ -14,11 +12,9 @@ A Flask-based web application for performing various matrix operations with an i
   - Determinant calculation
   - Matrix inversion
 
-- **User-Friendly Interface**:
-  - Dynamic matrix input grids
-  - Responsive design
-  - Real-time results display
-  - Clean, modern UI
+- **Reliable API**: validates JSON payloads, matrix shape, finite numeric values, and a 10×10 maximum matrix size.
+- **Accessible UI**: responsive matrix editor, presets, and clear calculation errors.
+- **Complex eigenvalues**: returned as `{ "real": ..., "imaginary": ... }` values.
 
 ## How to Use
 
@@ -30,20 +26,29 @@ A Flask-based web application for performing various matrix operations with an i
 ## Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/Matrix-Calculator.git
-
-# Navigate to project directory
-cd Matrix-Calculator
-
-# Install dependencies
+python -m venv .venv
+.venv\Scripts\activate  # Windows PowerShell
 pip install -r requirements.txt
-
-# Run the application
 python app.py
 ```
 
-Then open your browser to: http://localhost:5000
+Open http://127.0.0.1:5000.
+
+## Production
+
+Set `PORT` to the port exposed by your host and run with Gunicorn:
+
+```bash
+gunicorn --workers 2 --bind 0.0.0.0:$PORT app:app
+```
+
+`Procfile` provides this command for compatible platforms. Do not use Flask's development server in production.
+
+## Testing
+
+```bash
+pytest
+```
 
 ## Project Structure
 
@@ -52,6 +57,7 @@ Matrix-Calculator/
 ├── app.py                # Flask application
 ├── matrix_calculator.py  # Matrix operation logic
 ├── requirements.txt      # Python dependencies
+├── tests/                # API regression tests
 ├── static/
 │   └── css/
 │       └── style.css     # Stylesheets
